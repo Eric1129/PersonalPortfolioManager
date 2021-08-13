@@ -22,5 +22,27 @@ public class Portfolio implements Serializable {
         this.accountNumber = accountNumber;
     }
 
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
+
+    @Column(name = "account_type")
+    private String accountType;
+
+    @Column(name = "value")
+    private double value;
+
 
 }
