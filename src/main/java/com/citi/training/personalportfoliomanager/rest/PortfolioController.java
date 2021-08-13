@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-import java.util.List;
 
 @RestController
 @RequestMapping("/portfolio")
@@ -79,7 +78,7 @@ public class PortfolioController {
         portfolioService.deleteAccount(account);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/add/{id}/{value}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/deposit/{id}/{value}")
     public void deposit(@PathVariable("id") int id, @PathVariable("value") double value){
         //need to add checks to ensure users aren't depositing negative values
         portfolioService.deposit(id, value);
