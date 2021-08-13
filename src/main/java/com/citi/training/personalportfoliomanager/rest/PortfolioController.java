@@ -6,12 +6,20 @@ import com.citi.training.personalportfoliomanager.service.PortfolioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+import java.util.List;
+
 @RestController
 @RequestMapping("/portfolio")
 public class PortfolioController {
 
     @Autowired
     private PortfolioService portfolioService;
+
+    @RequestMapping(method = RequestMethod.GET, value="/all")
+    public Collection<Portfolio> getAll(){
+        return portfolioService.getAllPortfolios();
+    }
 
     /**
      * Gets the account with id account_id
@@ -26,7 +34,7 @@ public class PortfolioController {
      * @return (int) the net worth of all the accounts in this portfolio
      */
     @RequestMapping(method = RequestMethod.GET, value="/networth")
-    public int getNetWorth(){
+    public double getNetWorth(){
         return portfolioService.getNetWorth();
     }
 
@@ -35,7 +43,7 @@ public class PortfolioController {
      * @return (int) the cash value of all the accounts in this portfolio
      */
     @RequestMapping(method = RequestMethod.GET, value="/cashvalue")
-    public Portfolio getCashValue(){
+    public double getCashValue(){
         return portfolioService.getCashValue();
     }
 
@@ -44,7 +52,7 @@ public class PortfolioController {
      * @return (int) the investment value of all the accounts in this portfolio
      */
     @RequestMapping(method = RequestMethod.GET, value="/investmentvalue")
-    public Portfolio getInvestmentValue(){
+    public double getInvestmentValue(){
         return portfolioService.getInvestmentValue();
     }
 

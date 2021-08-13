@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Service
 public class PortfolioServiceImpl implements PortfolioService {
 
+    //portfolio = account
     @Autowired
     private PortfolioRepository portfolioRepository;
 
@@ -18,4 +20,84 @@ public class PortfolioServiceImpl implements PortfolioService {
     public Collection<Portfolio> getAllPortfolios() {
         return portfolioRepository.findAll();
     }
+
+    @Override
+    public Portfolio get(int account_id) {
+        return portfolioRepository.getById(account_id);
+    }
+
+    @Override
+    public double getNetWorth() {
+        Collection<Portfolio> portfolioList = new ArrayList<>();
+        portfolioList = portfolioRepository.findAll();
+        double ret = 0;
+        for(Portfolio account: portfolioList){
+            ret += account.getValue();
+        }
+        return ret;
+    }
+
+    @Override
+    public double getCashValue() {
+        Collection<Portfolio> portfolioList = new ArrayList<>();
+        portfolioList = portfolioRepository.findAll();
+        double ret = 0;
+        for(Portfolio account: portfolioList){
+            if(account.getAccountType().equals("cash")){
+                ret += account.getValue();
+            }
+
+        }
+        return ret;
+    }
+
+    @Override
+    public double getInvestmentValue() {
+        Collection<Portfolio> portfolioList = new ArrayList<>();
+        portfolioList = portfolioRepository.findAll();
+        double ret = 0;
+        for(Portfolio account: portfolioList){
+            if(account.getAccountType().equals("investment")){
+                ret += account.getValue();
+            }
+
+        }
+        return ret;
+    }
+
+    @Override
+    public void addNewAccount(Portfolio account) {
+        portfolioRepository.save(account);
+    }
+
+    @Override
+    public void deleteAccount(int id) {
+        Portfolio toBeDeleted = portfolioRepository.findById(id).get();
+        deleteAccount(toBeDeleted);
+    }
+
+    @Override
+    public void deleteAccount(Portfolio account) {
+        portfolioRepository.delete(account);
+    }
+
+    @Override
+    public void deposit(int id, double value) {
+        if(value <= 0){
+            return;
+        }
+        Portfolio toBeDepositedInto = portfolioRepository.findById(id).get();
+        toBeDepositedInto.setValue(toBeDepositedInto.getValue() + value);
+    }
+
+    @Override
+    public void withdraw(int id, double value) {
+        Portfolio toBeDepositedInto = portfolioRepository.findById(id).get();
+        if(value <= 0 || value > toBeDepositedInto.getValue()){
+            return;
+        }
+        toBeDepositedInto.setValue(toBeDepositedInto.getValue() - value);
+    }
+
+
 }
