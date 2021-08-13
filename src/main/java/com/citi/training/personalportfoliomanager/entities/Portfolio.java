@@ -21,4 +21,6 @@ public class Portfolio implements Serializable {
     public void setAccountNumber(Integer accountNumber) {
         this.accountNumber = accountNumber;
     }
+
+
 }
