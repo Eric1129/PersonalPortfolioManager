@@ -42,7 +42,7 @@ public class Portfolio implements Serializable {
     private String accountType;
 
     @Column(name = "value")
-    private double value;
+    private Double value;
 
 
 }

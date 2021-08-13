@@ -23,7 +23,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 
     @Override
     public Portfolio get(int account_id) {
-        return portfolioRepository.getById(account_id);
+        return portfolioRepository.findById(account_id).get();
     }
 
     @Override

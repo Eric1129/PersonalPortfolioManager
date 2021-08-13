@@ -23,7 +23,7 @@ public class PortfolioController {
     /**
      * Gets the account with id account_id
      */
-    @RequestMapping(method = RequestMethod.GET, value="/{account_id}")
+    @RequestMapping(method = RequestMethod.GET, value = "{account_id}")
     public Portfolio getAccount(@PathVariable("account_id") int account_id){
         return portfolioService.get(account_id);
     }
