@@ -59,7 +59,7 @@ public class PortfolioController {
      * Adds a new account to the portfolio table
      * @param account
      */
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, value="/")
     public void addAccount(@RequestBody Portfolio account) {
         portfolioService.addNewAccount(account);
     }
@@ -84,7 +84,7 @@ public class PortfolioController {
         portfolioService.deposit(id, value);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/add/{id}/{value}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/withdraw/{id}/{value}")
     public void withdraw(@PathVariable("id") int id, @PathVariable("value") double value){
         //need to add checks to ensure users aren't withdrawing negative values
         //need to ensure users are not withdrawing more then they have
