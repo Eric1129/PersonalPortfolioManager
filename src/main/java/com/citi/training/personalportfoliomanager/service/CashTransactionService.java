@@ -9,8 +9,6 @@ public interface CashTransactionService {
 
     CashTransaction get(int account_id);
 
-    double getNetWorth();
-
     double getCashValue();
 
     void addNewCashTransaction(CashTransaction account);

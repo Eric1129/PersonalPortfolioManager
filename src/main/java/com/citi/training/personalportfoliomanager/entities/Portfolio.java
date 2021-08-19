@@ -30,19 +30,11 @@ public class Portfolio implements Serializable {
         this.accountType = accountType;
     }
 
-    public double getValue() {
-        return value;
-    }
-
-    public void setValue(double value) {
-        this.value = value;
-    }
 
     @Column(name = "account_type")
     private String accountType;
 
-    @Column(name = "value")
-    private Double value;
+
 
 
 }

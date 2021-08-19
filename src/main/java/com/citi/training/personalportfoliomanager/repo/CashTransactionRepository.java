@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface CashTransactionRepository extends JpaRepository<CashTransaction, Integer> {
-    List<CashTransaction> findByAccountType(String type);
+    //List<CashTransaction> findByAccountType(String type);
 }
