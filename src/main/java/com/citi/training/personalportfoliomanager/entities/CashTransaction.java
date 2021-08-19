@@ -1,9 +1,6 @@
 package com.citi.training.personalportfoliomanager.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -11,14 +8,15 @@ import java.time.LocalDateTime;
 public class CashTransaction {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "transaction_number", nullable = false)
-    private int transactionNumber;
+    private Integer transactionNumber;
 
     @Column(name = "date", nullable = false)
     private LocalDateTime date;
 
     @Column(name = "account_number", nullable = false)
-    private int accountNumber;
+    private Integer accountNumber;
 
     public String getDepositOrCashOut() {
         return depositOrCashOut;
@@ -28,11 +26,11 @@ public class CashTransaction {
         this.depositOrCashOut = depositOrCashOut;
     }
 
-    public int getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(double value) {
         this.value = value;
     }
 
@@ -40,15 +38,15 @@ public class CashTransaction {
     private String depositOrCashOut;
 
     @Column(name = "value", nullable = false)
-    private int value;
+    private Double value;
 
     public int getTransactionNumber() {
         return transactionNumber;
     }
 
-    public void setTransactionNumber(int transactionNumber) {
-        this.transactionNumber = transactionNumber;
-    }
+//    public void setTransactionNumber(int transactionNumber) {
+//        this.transactionNumber = transactionNumber;
+//    }
 
     public LocalDateTime getDate() {
         return date;
@@ -65,6 +63,5 @@ public class CashTransaction {
     public void setAccountNumber(int accountNumber) {
         this.accountNumber = accountNumber;
     }
-
 
 }
