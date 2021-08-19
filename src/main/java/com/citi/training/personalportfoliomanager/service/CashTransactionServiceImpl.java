@@ -5,6 +5,7 @@ import com.citi.training.personalportfoliomanager.repo.CashTransactionRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Service
@@ -25,7 +26,19 @@ public class CashTransactionServiceImpl implements CashTransactionService{
 
     @Override
     public double getCashValue() {
-        return 0;
+        Collection<CashTransaction> cashTransactionList = new ArrayList<>();
+        cashTransactionList = cashTransactionRepository.findAll();
+        double ret = 0;
+
+        for(CashTransaction account: cashTransactionList){
+            if(account.getDepositOrCashOut().equals("deposit")){
+                ret += account.getValue();
+            }else{
+                ret -= account.getValue();
+            }
+        }
+
+        return ret;
     }
 
     @Override

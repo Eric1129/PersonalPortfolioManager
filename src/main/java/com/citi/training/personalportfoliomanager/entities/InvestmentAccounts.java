@@ -13,13 +13,13 @@ public class InvestmentAccounts implements Serializable{
 
     @Id
     @Column(name = "transaction_number", nullable = false)
-    private int transactionNumber;
+    private Integer transactionNumber;
 
     @Column(name = "date", nullable = false)
     private LocalDateTime date;
 
     @Column(name = "account_number", nullable = false)
-    private int accountNumber;
+    private Integer accountNumber;
 
     @Column(name = "buy_or_sell", nullable = false)
     private String buyOrSell;
@@ -28,16 +28,16 @@ public class InvestmentAccounts implements Serializable{
     private String ticker;
 
     @Column(name = "face_value", nullable = false)
-    private double faceValue;
+    private Double faceValue;
 
     @Column(name = "amount", nullable = false)
-    private int amount;
+    private Integer amount;
 
-    public int getTransactionNumber() {
+    public Integer getTransactionNumber() {
         return transactionNumber;
     }
 
-    public void setTransactionNumber(int transactionNumber) {
+    public void setTransactionNumber(Integer transactionNumber) {
         this.transactionNumber = transactionNumber;
     }
 
@@ -49,11 +49,11 @@ public class InvestmentAccounts implements Serializable{
         this.date = date;
     }
 
-    public int getAccountNumber() {
+    public Integer getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(int accountNumber) {
+    public void setAccountNumber(Integer accountNumber) {
         this.accountNumber = accountNumber;
     }
 
@@ -73,15 +73,15 @@ public class InvestmentAccounts implements Serializable{
         this.ticker = ticker;
     }
 
-    public double getFaceValue() {
+    public Double getFaceValue() {
         return faceValue;
     }
 
-    public void setFaceValue(double faceValue) {
+    public void setFaceValue(Double faceValue) {
         this.faceValue = faceValue;
     }
 
-    public int getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
