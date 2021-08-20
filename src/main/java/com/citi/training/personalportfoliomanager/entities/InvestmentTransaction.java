@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name="investment_accounts")
-public class InvestmentAccounts implements Serializable{
+public class InvestmentTransaction implements Serializable{
 
     @Id
     @Column(name = "transaction_number", nullable = false)
