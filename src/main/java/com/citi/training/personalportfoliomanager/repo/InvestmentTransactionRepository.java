@@ -9,5 +9,7 @@ import java.util.List;
 @Repository
 public interface InvestmentTransactionRepository extends JpaRepository<InvestmentTransaction, Integer> {
 
-    public List<InvestmentTransaction> findByTickerAndAccount_number(String ticker, Integer accountNumber);
+    public List<InvestmentTransaction> findByTickerAndAccountNumber(String ticker, Integer accountNumber);
+
+    public List<InvestmentTransaction> findInvestmentTransactionsByAccountNumber(Integer accountNumber);
 }

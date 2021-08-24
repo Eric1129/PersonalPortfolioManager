@@ -33,20 +33,20 @@ public class CashTransactionController {
      * Gets the Cash value of all accounts
      * @return (int) the cash value of all the accounts in this portfolio
      */
-    @RequestMapping(method = RequestMethod.GET, value="/cashvalue")
-    public double getCashValue(){
-        return cashTransactionService.getCashValue();
-    }
+//    @RequestMapping(method = RequestMethod.GET, value="/cashvalue")
+//    public double getCashValue(){
+//        return cashTransactionService.getCashValue();
+//    }
 
 
     /**
      * Adds a new CashTransaction to the CashTransaction table
      * @param CashTransaction
      */
-    @RequestMapping(method = RequestMethod.POST, value="/")
-    public void addAccount(@RequestBody CashTransaction ct) {
-        cashTransactionService.addNewCashTransaction(ct);
-    }
+//    @RequestMapping(method = RequestMethod.POST, value="/")
+//    public void addAccount(@RequestBody CashTransaction ct) {
+//        cashTransactionService.addNewCashTransaction(ct);
+//    }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/deposit/{id}/{value}")
     public void deposit(@PathVariable("id") int id, @PathVariable("value") double value){

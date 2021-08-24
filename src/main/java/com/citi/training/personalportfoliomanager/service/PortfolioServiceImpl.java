@@ -85,6 +85,13 @@ public class PortfolioServiceImpl implements PortfolioService {
     }
 
     @Override
+    public void addNewAccount(String account_type) {
+        Portfolio account = new Portfolio();
+        account.setAccountType(account_type);
+        portfolioRepository.save(account);
+    }
+
+    @Override
     public void deleteAccount(int id) {
         Portfolio toBeDeleted = portfolioRepository.findById(id).get();
         deleteAccount(toBeDeleted);
