@@ -17,12 +17,23 @@ public class PortfolioServiceImpl implements PortfolioService {
     @Autowired
     private PortfolioRepository portfolioRepository;
 
+
 //    @Autowired
 //    private CashAccountRepository cashAccountRepository;
 
     @Override
     public Collection<Portfolio> getAllPortfolios() {
         return portfolioRepository.findAll();
+    }
+
+    @Override
+    public Collection<Portfolio> getAllCashAccounts() {
+        return portfolioRepository.findPortfolioByAccountType("cash");
+    }
+
+    @Override
+    public Collection<Portfolio> getAllInvestmentAccounts() {
+        return portfolioRepository.findPortfolioByAccountType("investment");
     }
 
     @Override

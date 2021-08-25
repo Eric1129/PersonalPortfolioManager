@@ -2,22 +2,42 @@ package com.citi.training.personalportfoliomanager.rest;
 
 
 import com.citi.training.personalportfoliomanager.entities.Portfolio;
+import com.citi.training.personalportfoliomanager.service.CashTransactionService;
+import com.citi.training.personalportfoliomanager.service.InvestmentTransactionService;
 import com.citi.training.personalportfoliomanager.service.PortfolioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.Collection;
 
 @RestController
 @RequestMapping("/portfolio")
+@CrossOrigin
 public class PortfolioController {
 
     @Autowired
     private PortfolioService portfolioService;
 
+    @Autowired
+    private CashTransactionService cashTransactionService;
+
+    @Autowired
+    private InvestmentTransactionService investmentTransactionService;
+
     @RequestMapping(method = RequestMethod.GET, value="/all")
     public Collection<Portfolio> getAll(){
         return portfolioService.getAllPortfolios();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value="/investment_accounts")
+    public Collection<Portfolio> getAllInvestmentAccounts(){
+        return portfolioService.getAllInvestmentAccounts();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value="/cash_accounts")
+    public Collection<Portfolio> getAllCashAccounts(){
+        return portfolioService.getAllCashAccounts();
     }
 
     /**
@@ -33,8 +53,8 @@ public class PortfolioController {
      * @return (int) the net worth of all the accounts in this portfolio
      */
     @RequestMapping(method = RequestMethod.GET, value="/networth")
-    public double getNetWorth(){
-        return portfolioService.getNetWorth();
+    public Double getNetWorth() throws IOException {
+         return cashTransactionService.getCashValue() + investmentTransactionService.getInvestmentValue();
     }
 
     /**
@@ -43,7 +63,7 @@ public class PortfolioController {
      */
     @RequestMapping(method = RequestMethod.GET, value="/cashvalue")
     public double getCashValue(){
-        return portfolioService.getCashValue();
+        return cashTransactionService.getCashValue();
     }
 
     /**
@@ -51,8 +71,8 @@ public class PortfolioController {
      * @return (int) the investment value of all the accounts in this portfolio
      */
     @RequestMapping(method = RequestMethod.GET, value="/investmentvalue")
-    public double getInvestmentValue(){
-        return portfolioService.getInvestmentValue();
+    public double getInvestmentValue() throws IOException {
+        return investmentTransactionService.getInvestmentValue();
     }
 
     /**
@@ -64,10 +84,16 @@ public class PortfolioController {
         portfolioService.addNewAccount(account);
     }
 
+    @RequestMapping(method = RequestMethod.POST, value="/add_account/{account_type}")
+    public void addAccount(@PathVariable("account_type") String account_type){
+        portfolioService.addNewAccount(account_type);
+    }
+
     /**
      * Delets an existing account from the portfolio table
      * @param id
      */
+
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public void deleteAccount(@PathVariable("id") int id) {
         portfolioService.deleteAccount(id);
@@ -78,12 +104,16 @@ public class PortfolioController {
         portfolioService.deleteAccount(account);
     }
 
+
+    //to be removed
     @RequestMapping(method = RequestMethod.PUT, value = "/deposit/{id}/{value}")
     public void deposit(@PathVariable("id") int id, @PathVariable("value") double value){
         //need to add checks to ensure users aren't depositing negative values
         portfolioService.deposit(id, value);
     }
 
+
+    //to be removed
     @RequestMapping(method = RequestMethod.PUT, value = "/withdraw/{id}/{value}")
     public void withdraw(@PathVariable("id") int id, @PathVariable("value") double value){
         //need to add checks to ensure users aren't withdrawing negative values

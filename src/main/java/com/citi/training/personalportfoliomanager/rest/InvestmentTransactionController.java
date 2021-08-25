@@ -11,7 +11,7 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("/investment")
-
+@CrossOrigin
 public class InvestmentTransactionController{
 
     @Autowired
@@ -22,7 +22,7 @@ public class InvestmentTransactionController{
         return investmentTransactionService.getAllPortfolios();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "{transaction_id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/{transaction_id}")
     public InvestmentTransaction getTransaction(@PathVariable("transaction_id") int transaction_id){
         return investmentTransactionService.get(transaction_id);
     }
@@ -47,6 +47,10 @@ public class InvestmentTransactionController{
         return investmentTransactionService.getInvestmentValueForSingleAccount(accountNumber);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/stock/{tickerId}")
+    public Double getStockPrice(@PathVariable("tickerId") String tickerId) throws IOException {
+        return investmentTransactionService.getStockPrice(tickerId);
+    }
 
 }
 

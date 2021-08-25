@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class CashTransactionServiceImpl implements CashTransactionService{
@@ -29,6 +30,16 @@ public class CashTransactionServiceImpl implements CashTransactionService{
     @Override
     public CashTransaction get(int transaction_id) {
         return cashTransactionRepository.findById(transaction_id).get();
+    }
+
+    @Override
+    public Double getCashValue() {
+        List<CashTransaction> transactionList = cashTransactionRepository.findAll();
+        Double ret = 0.0;
+        for(CashTransaction transaction: transactionList){
+            ret += transaction.getValue();
+        }
+        return ret;
     }
 
     @Override

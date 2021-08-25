@@ -17,4 +17,6 @@ public interface InvestmentTransactionService {
     Boolean sell(Integer accountNumber, Integer cashAccountNumber, String ticker, Integer amount) throws IOException;
 
     Double getInvestmentValueForSingleAccount(Integer accountNumber) throws IOException;
+
+    Double getStockPrice(String ticker) throws IOException;
 }

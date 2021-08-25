@@ -9,5 +9,7 @@ import java.util.List;
 @Repository
 public interface PortfolioRepository extends JpaRepository<Portfolio, Integer> {
 
-    List<Portfolio> findByAccountType(String type);
+    //List<Portfolio> findByAccountType(String type);
+
+    List<Portfolio> findPortfolioByAccountType(String accountType);
 }

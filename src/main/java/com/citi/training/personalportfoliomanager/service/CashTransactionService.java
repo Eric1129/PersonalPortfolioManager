@@ -10,6 +10,8 @@ public interface CashTransactionService {
 
     CashTransaction get(int account_id);
 
+    Double getCashValue();
+
     boolean deposit(int id, double value);
 
     boolean withdraw(int id, double value);

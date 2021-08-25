@@ -9,6 +9,10 @@ import java.util.Collection;
 public interface PortfolioService {
     Collection<Portfolio> getAllPortfolios();
 
+    Collection<Portfolio> getAllCashAccounts();
+
+    Collection<Portfolio> getAllInvestmentAccounts();
+
     Portfolio get(int account_id);
 
     double getNetWorth();

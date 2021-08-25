@@ -12,6 +12,7 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("/portfolio/cash_accounts")
+@CrossOrigin
 public class CashTransactionController {
     @Autowired
     private CashTransactionService cashTransactionService;
@@ -39,10 +40,10 @@ public class CashTransactionController {
 //    }
 
 
-    /**
-     * Adds a new CashTransaction to the CashTransaction table
-     * @param CashTransaction
-     */
+//    /**
+//     * Adds a new CashTransaction to the CashTransaction table
+//     * @param CashTransaction
+//     */
 //    @RequestMapping(method = RequestMethod.POST, value="/")
 //    public void addAccount(@RequestBody CashTransaction ct) {
 //        cashTransactionService.addNewCashTransaction(ct);

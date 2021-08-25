@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="investment_accounts")
+@Table(name="investment_transactions")
 public class InvestmentTransaction implements Serializable{
 
     @Id
