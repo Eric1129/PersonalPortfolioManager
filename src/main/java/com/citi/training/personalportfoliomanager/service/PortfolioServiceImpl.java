@@ -42,55 +42,6 @@ public class PortfolioServiceImpl implements PortfolioService {
     }
 
     @Override
-    public double getNetWorth() {
-//        Collection<Portfolio> portfolioList = new ArrayList<>();
-//        portfolioList = portfolioRepository.findAll();
-//        double ret = 0;
-//        for(Portfolio account: portfolioList){
-//            ret += account.getValue();
-//        }
-//        return ret;
-        return 0;
-    }
-
-    @Override
-    public double getCashValue() {
-//        Collection<Portfolio> portfolioList = new ArrayList<>();
-//        portfolioList = portfolioRepository.findAll();
-//        double ret = 0;
-//        for(Portfolio account: portfolioList){
-//            if(account.getAccountType().equals("cash")){
-//                ret += account.getValue();
-//            }
-//
-//        }
-//        return ret;
-        return 0;
-
-//        Collection<CashAccounts> cashAccountsList = new ArrayList<>();
-//        cashAccountsList = cashAccountRepository.findAll();
-//        double ret = 0;
-//
-//        for(CashAccount account: cashAccountsList)
-
-    }
-
-    @Override
-    public double getInvestmentValue() {
-//        Collection<Portfolio> portfolioList = new ArrayList<>();
-//        portfolioList = portfolioRepository.findAll();
-//        double ret = 0;
-//        for(Portfolio account: portfolioList){
-//            if(account.getAccountType().equals("investment")){
-//                ret += account.getValue();
-//            }
-//
-//        }
-//        return ret;
-        return 0;
-    }
-
-    @Override
     public void addNewAccount(Portfolio account) {
         portfolioRepository.save(account);
     }
