@@ -76,7 +76,6 @@ public class CashTransactionServiceImpl implements CashTransactionService{
 
     @Override
     public boolean withdraw(int id, double value) {
-        // Todo: future check the balance of this account is greater or equals than withdraw value
         if(!portfolioRepository.existsById(id)){
             return false;
         }

@@ -175,4 +175,5 @@ public class InvestmentTransactionServiceImpl implements InvestmentTransactionSe
     public Double getStockPrice(String ticker) throws IOException {
         return YahooFinance.get(ticker).getQuote().getPrice().doubleValue();
     }
+
 }
