@@ -57,7 +57,6 @@ public class CashTransactionServiceImpl implements CashTransactionService{
             }else{
                 ret-=transaction.getValue();
             }
-
         }
         return ret;
     }
