@@ -34,7 +34,4 @@ public class Portfolio implements Serializable {
     @Column(name = "account_type")
     private String accountType;
 
-
-
-
 }

@@ -7,6 +7,7 @@ import com.citi.training.personalportfoliomanager.service.InvestmentTransactionS
 import com.citi.training.personalportfoliomanager.service.PortfolioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import yahoofinance.YahooFinance;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -76,6 +77,22 @@ public class PortfolioController {
     }
 
     /**
+     Gets markets indices
+     */
+    @RequestMapping(method = RequestMethod.GET, value="/marketindices/SAP500")
+    public double getSAP500() throws IOException {
+        return YahooFinance.get("^GSPC").getQuote().getPrice().doubleValue();
+    }
+    @RequestMapping(method = RequestMethod.GET, value="/marketindices/DWJ")
+    public double getDWJ() throws IOException {
+        return YahooFinance.get("^DJI").getQuote().getPrice().doubleValue();
+    }
+    @RequestMapping(method = RequestMethod.GET, value="/marketindices/NSDQ")
+    public double getNSDQ() throws IOException {
+        return YahooFinance.get("^IXIC").getQuote().getPrice().doubleValue();
+    }
+
+    /**
      * Adds a new account to the portfolio table
      * @param account
      */
@@ -103,6 +120,7 @@ public class PortfolioController {
     public void deleteAccount(@RequestBody Portfolio account) {
         portfolioService.deleteAccount(account);
     }
+
 
 
     //to be removed
