@@ -79,7 +79,7 @@ public class PortfolioController {
      * Adds a new account to the portfolio table
      * @param account
      */
-    @RequestMapping(method = RequestMethod.POST, value="/")
+    @RequestMapping(method = RequestMethod.POST, value="/addAccount")
     public void addAccount(@RequestBody Portfolio account) {
         portfolioService.addNewAccount(account);
     }
