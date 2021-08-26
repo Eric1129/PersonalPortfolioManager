@@ -25,11 +25,15 @@ public class CashTransactionController {
     /**
      * Gets the account with id account_id
      */
-    @RequestMapping(method = RequestMethod.GET, value = "{account_id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/{account_id}")
     public CashTransaction getAccount(@PathVariable("account_id") int account_id){
         return cashTransactionService.get(account_id);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value="/value/{accountNumber}")
+    public Double getCashAccountValue(@PathVariable("accountNumber") int accountNumber){
+        return cashTransactionService.getCashAccountValue(accountNumber);
+    }
     /**
      * Gets the Cash value of all accounts
      * @return (int) the cash value of all the accounts in this portfolio
