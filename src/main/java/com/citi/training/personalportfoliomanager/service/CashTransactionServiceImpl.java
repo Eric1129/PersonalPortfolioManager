@@ -37,7 +37,7 @@ public class CashTransactionServiceImpl implements CashTransactionService{
         List<CashTransaction> transactionList = cashTransactionRepository.findAll();
         Double ret = 0.0;
         for(CashTransaction transaction: transactionList){
-            if(transaction.getDepositOrCashOut().equals("Deposit")){
+            if(transaction.getDepositOrCashOut().equals("deposit")){
                 ret += transaction.getValue();
             } else {
                 ret -= transaction.getValue();
