@@ -1,9 +1,6 @@
 package com.citi.training.personalportfoliomanager.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -12,6 +9,7 @@ import java.time.LocalDateTime;
 public class InvestmentTransaction implements Serializable{
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "transaction_number", nullable = false)
     private Integer transactionNumber;
 
@@ -85,9 +83,7 @@ public class InvestmentTransaction implements Serializable{
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
-
-
 }

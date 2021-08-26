@@ -9,7 +9,7 @@ public class CashTransaction {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "transaction_number", nullable = false)
+    @Column(name = "transaction_number")
     private Integer transactionNumber;
 
     @Column(name = "date", nullable = false)
@@ -17,6 +17,36 @@ public class CashTransaction {
 
     @Column(name = "account_number", nullable = false)
     private Integer accountNumber;
+
+    @Column(name = "deposit_or_cash_out", nullable = false)
+    private String depositOrCashOut;
+
+    @Column(name = "value", nullable = false)
+    private Double value;
+
+    public Integer getTransactionNumber() {
+        return transactionNumber;
+    }
+
+    public void setTransactionNumber(Integer transactionNumber) {
+        this.transactionNumber = transactionNumber;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public Integer getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(Integer accountNumber) {
+        this.accountNumber = accountNumber;
+    }
 
     public String getDepositOrCashOut() {
         return depositOrCashOut;
@@ -30,38 +60,7 @@ public class CashTransaction {
         return value;
     }
 
-    public void setValue(double value) {
+    public void setValue(Double value) {
         this.value = value;
     }
-
-    @Column(name = "deposit_or_cash_out", nullable = false)
-    private String depositOrCashOut;
-
-    @Column(name = "value", nullable = false)
-    private Double value;
-
-    public int getTransactionNumber() {
-        return transactionNumber;
-    }
-
-//    public void setTransactionNumber(int transactionNumber) {
-//        this.transactionNumber = transactionNumber;
-//    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public int getAccountNumber() {
-        return accountNumber;
-    }
-
-    public void setAccountNumber(int accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
 }
