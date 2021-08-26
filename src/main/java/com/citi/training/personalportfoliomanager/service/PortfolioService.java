@@ -15,12 +15,6 @@ public interface PortfolioService {
 
     Portfolio get(int account_id);
 
-    double getNetWorth();
-
-    double getCashValue();
-
-    double getInvestmentValue();
-
     void addNewAccount(Portfolio account);
 
     void addNewAccount(String account_type);
