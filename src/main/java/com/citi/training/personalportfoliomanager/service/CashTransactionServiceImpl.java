@@ -42,7 +42,6 @@ public class CashTransactionServiceImpl implements CashTransactionService{
             }else{
                 ret-=transaction.getValue();
             }
-
         }
         return ret;
     }
@@ -78,7 +77,11 @@ public class CashTransactionServiceImpl implements CashTransactionService{
     @Override
     public boolean withdraw(int id, double value) {
         // Todo: future check the balance of this account is greater or equals than withdraw value
-        if(!portfolioRepository.existsById(id) ){
+        if(!portfolioRepository.existsById(id)){
+            return false;
+        }
+        double currentBalance = getCashAccountValue(id);
+        if(currentBalance < value){
             return false;
         }
         CashTransaction newCT = new CashTransaction();
