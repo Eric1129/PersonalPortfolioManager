@@ -207,4 +207,38 @@ public class InvestmentTransactionServiceImpl implements InvestmentTransactionSe
         return YahooFinance.get(ticker).getQuote().getPrice().doubleValue();
     }
 
+//    @Override
+//    public HashMap<String,Double> getGainers(int accountNumber) throws IOException {
+//        List<InvestmentTransaction> transactionList = investmentTransactionRepository.findInvestmentTransactionsByAccountNumber(accountNumber);
+//        HashMap<String,Integer> hashMap = new HashMap<>();
+//        for(InvestmentTransaction investmentTransaction : transactionList){
+//            String ticker = investmentTransaction.getTicker();
+//            Integer amount = investmentTransaction.getAmount();
+//            if(investmentTransaction.getBuyOrSell().equals("buy")){
+//                if(!hashMap.containsKey(ticker)){
+//                    hashMap.put(ticker, amount);
+//                } else {
+//                    Integer temp = hashMap.get(investmentTransaction.getTicker());
+//                    hashMap.put(investmentTransaction.getTicker(), temp + investmentTransaction.getAmount());
+//                }
+//            } else {
+//                if(!hashMap.containsKey(ticker)){
+//                    hashMap.put(ticker, -amount);
+//                } else {
+//                    Integer temp = hashMap.get(investmentTransaction.getTicker());
+//                    hashMap.put(investmentTransaction.getTicker(), temp - investmentTransaction.getAmount());
+//                }
+//            }
+//        }
+//        hashMap.
+//
+//
+//        return new HashMap<>();
+//    }
+
+//    @Override
+//    public Double[] getLosers() throws IOException {
+//        return new Double[0];
+//    }
+
 }

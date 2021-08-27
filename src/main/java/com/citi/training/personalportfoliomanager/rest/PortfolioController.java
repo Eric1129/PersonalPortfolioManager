@@ -83,13 +83,25 @@ public class PortfolioController {
     public double getSAP500() throws IOException {
         return YahooFinance.get("^GSPC").getQuote().getPrice().doubleValue();
     }
+    @RequestMapping(method = RequestMethod.GET, value="/marketindices/SAP500/change")
+    public double getSAP500Change() throws IOException {
+        return YahooFinance.get("^GSPC").getQuote().getChangeInPercent().doubleValue();
+    }
     @RequestMapping(method = RequestMethod.GET, value="/marketindices/DWJ")
     public double getDWJ() throws IOException {
         return YahooFinance.get("^DJI").getQuote().getPrice().doubleValue();
     }
+    @RequestMapping(method = RequestMethod.GET, value="/marketindices/DWJ/change")
+    public double getDWJChange() throws IOException {
+        return YahooFinance.get("^DJI").getQuote().getChangeInPercent().doubleValue();
+    }
     @RequestMapping(method = RequestMethod.GET, value="/marketindices/NSDQ")
     public double getNSDQ() throws IOException {
         return YahooFinance.get("^IXIC").getQuote().getPrice().doubleValue();
+    }
+    @RequestMapping(method = RequestMethod.GET, value="/marketindices/NSDQ/change")
+    public double getNSDQChange() throws IOException {
+        return YahooFinance.get("^IXIC").getQuote().getChangeInPercent().doubleValue();
     }
 
     /**

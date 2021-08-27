@@ -6,6 +6,7 @@ import com.citi.training.personalportfoliomanager.service.InvestmentTransactionS
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import yahoofinance.YahooFinance;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -61,6 +62,12 @@ public class InvestmentTransactionController{
     public List<ObjectNode> getInvestments(@PathVariable("accountNumber") int accountNumber) throws IOException {
         return investmentTransactionService.getInvestments(accountNumber);
     }
+
+//    @RequestMapping(method = RequestMethod.GET, value="/gainers/{gainerIndex}")
+//    public double[] getGainers(@PathVariable("gainerIndex") String gainerIndex) throws IOException {
+//        for()
+//        return investmentTransactionService;
+//    }
 
 }
 
