@@ -2,19 +2,21 @@ package com.citi.training.personalportfoliomanager.service;
 
 import com.citi.training.personalportfoliomanager.entities.InvestmentTransaction;
 import com.citi.training.personalportfoliomanager.repo.InvestmentTransactionRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import yahoofinance.YahooFinance;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class InvestmentTransactionServiceImpl implements InvestmentTransactionService {
+
+    @Autowired
+    private ObjectMapper mapper;
 
     @Autowired
     private InvestmentTransactionRepository investmentTransactionRepository;
@@ -168,6 +170,35 @@ public class InvestmentTransactionServiceImpl implements InvestmentTransactionSe
         for(String ticker: tickersAndAmounts.keySet()){
             double price = this.getStockPrice(ticker);
             ret += price * tickersAndAmounts.get(ticker);
+        }
+        return ret;
+    }
+
+    public List<ObjectNode> getInvestments(Integer accountNumber) throws IOException {
+        //need to go through all transactions for this account and g
+        List<ObjectNode> ret = new ArrayList<>();
+
+        List<InvestmentTransaction> transactionList = investmentTransactionRepository.findInvestmentTransactionsByAccountNumber(accountNumber);
+        Map<String, Integer> tickersAndAmounts = new HashMap<>();
+        //Step 1, go through all transactions to get each ticker held
+        for(InvestmentTransaction transaction: transactionList){
+            if(transaction.getBuyOrSell().equals("buy")){
+                tickersAndAmounts.put(transaction.getTicker(), tickersAndAmounts.getOrDefault(transaction.getTicker(),0) + transaction.getAmount());
+
+            }else{
+                tickersAndAmounts.put(transaction.getTicker(), tickersAndAmounts.getOrDefault(transaction.getTicker(),0) - transaction.getAmount());
+                if(tickersAndAmounts.get(transaction.getTicker()) <= 0){
+                    tickersAndAmounts.remove(transaction.getTicker());
+                }
+            }
+        }
+
+        for(String ticker: tickersAndAmounts.keySet()){
+            ObjectNode toAdd = mapper.createObjectNode();
+            toAdd.put("ticker", ticker);
+            toAdd.put("amount", tickersAndAmounts.get(ticker));
+            toAdd.put("current_price", this.getStockPrice(ticker));
+            ret.add(toAdd);
         }
         return ret;
     }

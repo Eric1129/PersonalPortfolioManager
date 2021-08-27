@@ -53,13 +53,13 @@ public class CashTransactionController {
 //        cashTransactionService.addNewCashTransaction(ct);
 //    }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/deposit/{id}/{value}")
+    @RequestMapping(method = RequestMethod.POST, value = "/deposit/{id}/{value}")
     public void deposit(@PathVariable("id") int id, @PathVariable("value") double value){
         //need to add checks to ensure users aren't depositing negative values
         cashTransactionService.deposit(id, value);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/withdraw/{id}/{value}")
+    @RequestMapping(method = RequestMethod.POST, value = "/withdraw/{id}/{value}")
     public void withdraw(@PathVariable("id") int id, @PathVariable("value") double value){
         //need to add checks to ensure users aren't withdrawing negative values
         //need to ensure users are not withdrawing more then they have

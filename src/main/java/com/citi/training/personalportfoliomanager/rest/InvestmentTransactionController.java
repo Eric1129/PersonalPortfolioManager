@@ -3,15 +3,18 @@ package com.citi.training.personalportfoliomanager.rest;
 
 import com.citi.training.personalportfoliomanager.entities.InvestmentTransaction;
 import com.citi.training.personalportfoliomanager.service.InvestmentTransactionService;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/investment")
 @CrossOrigin
+
 public class InvestmentTransactionController{
 
     @Autowired
@@ -50,6 +53,13 @@ public class InvestmentTransactionController{
     @RequestMapping(method = RequestMethod.GET, value = "/stock/{tickerId}")
     public Double getStockPrice(@PathVariable("tickerId") String tickerId) throws IOException {
         return investmentTransactionService.getStockPrice(tickerId);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/investments/{accountNumber}")
+    //need a list of hashmaps
+    //{ticker: "TSLA", amount: 0, current_price: 0}
+    public List<ObjectNode> getInvestments(@PathVariable("accountNumber") int accountNumber) throws IOException {
+        return investmentTransactionService.getInvestments(accountNumber);
     }
 
 }
